@@ -28,7 +28,7 @@ export class ListaTarefasComponent implements OnInit {
     private service: TarefaService,
     private router: Router,
     private fomBuilder: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): Tarefa[] {
     this.service.listar(this.categoria).subscribe((listaTarefas) => {
