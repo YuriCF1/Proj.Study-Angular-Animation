@@ -10,6 +10,8 @@ import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component'
 import { RodapeComponent } from './componentes/rodape/rodape.component';
 import { MensagemComponent } from './componentes/mensagem/mensagem.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,8 @@ import { MensagemComponent } from './componentes/mensagem/mensagem.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
