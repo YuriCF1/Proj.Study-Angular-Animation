@@ -4,19 +4,33 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
-import { trigger } from '@angular/animations';
+import { state, style, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
-  animations: [trigger('highlitedState', [])]
+  animations: [trigger('highlitedState', [ //Rece 2 parametros. 1 - Nome do trigger, que remete a animação. 2 - Array de metadados. Contendo states e styles
+    state('default', style({
+      border: '2px solid #B2B6FF',
+      // Maneiras de declaração
+      // 'background-color': 'valor'
+      // backgroundColor: 'valor'
+    }
+    )),
+    state('highlited', style({
+      border: '4px solid #B2B6FF',
+      filter: 'brightness(92%)'
+    }))
+  ])]
 })
+
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
   formAberto: boolean = false;
   categoria: string = '';
   validado: boolean = false;
+  indexTarefa: number = -1 //Nao quero que nenhum card comece destacado
 
   formulario: FormGroup = this.fomBuilder.group({
     id: [0],
