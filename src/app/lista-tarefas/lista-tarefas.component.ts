@@ -5,13 +5,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { highlitedStateTrigger } from '../animations';
+import { highlitedStateTrigger, showStateTrigger } from '../animations';
 
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
-  animations: [highlitedStateTrigger]
+  animations: [highlitedStateTrigger, showStateTrigger]
 })
 
 export class ListaTarefasComponent implements OnInit {
@@ -47,6 +47,11 @@ export class ListaTarefasComponent implements OnInit {
     this.resetarFormulario();
   }
 
+  cancelar() {
+    this.formAberto = false;
+    this.resetarFormulario();
+  }
+
   salvarTarefa() {
     if (this.formulario.value.id) {
       this.editarTarefa();
@@ -73,11 +78,6 @@ export class ListaTarefasComponent implements OnInit {
         complete: () => this.recarregarComponente(),
       });
     }
-  }
-
-  cancelar() {
-    this.resetarFormulario();
-    this.formAberto = false;
   }
 
   resetarFormulario() {
