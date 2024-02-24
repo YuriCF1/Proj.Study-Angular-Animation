@@ -20,3 +20,26 @@ export const highlitedStateTrigger = trigger('highlitedState', [ //Rece 2 parame
     // animate(200) //Duranção da transição
   ])
 ])
+
+
+export const showStateTrigger = trigger('showState', [
+  // state('notShown', style({
+
+  // })),
+  state('shown', style({
+
+  })),
+  // transition('notShown => shown', [
+  transition('void => shown', [
+    style({
+      opacity: 0
+    }), animate(200, style({
+      opacity: 1
+    }))
+  ]),
+  transition('shown => void', [
+    animate(200, style({
+      opacity: 0
+    }))
+  ])
+])
