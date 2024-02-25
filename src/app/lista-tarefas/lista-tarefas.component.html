@@ -2,8 +2,9 @@
   <div class="botao-criar">
     <button (click)="mostrarOuEsconderFormulario()">Criar nova tarefa</button>
   </div>
+  <!-- [@showState]="formAberto ? 'shown' : 'notShown'" -->
   <form
-    [@showState]="formAberto ? 'shown' : 'notShown'"
+    @showState
     class="formulario ff-prompt"
     [formGroup]="formulario"
     *ngIf="formAberto"

@@ -26,18 +26,27 @@ export const showStateTrigger = trigger('showState', [
   // state('notShown', style({
 
   // })),
-  state('shown', style({
+  // state('shown', style({
 
-  })),
+  // })),
   // transition('notShown => shown', [
-  transition('void => shown', [
+  // transition('void => shown', [
+
+  //  Se eu não quiser nomear o estado, para qualquer estado válido possível, uso o asterisco
+  // transition('void => *', [
+
+//Também posso nomear, de void para qualquer estado(*). :enter. E saindo do DOM, :leave
+  transition(':enter', [
     style({
       opacity: 0
     }), animate(200, style({
       opacity: 1
     }))
   ]),
-  transition('shown => void', [
+  // transition('shown => void', [
+  // transition('* => void', [
+
+  transition(':leave', [
     animate(200, style({
       opacity: 0
     }))
