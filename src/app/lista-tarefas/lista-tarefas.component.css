@@ -303,7 +303,7 @@ select:focus, input:focus {
 
 .icone-checked{
   background-image: url("/assets/icones/check-Feito.png");
-  border: none !important;
+  /* border: none !important; */
 }
 
 .categoria-Casa {

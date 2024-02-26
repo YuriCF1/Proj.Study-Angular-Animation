@@ -87,7 +87,9 @@
           {{ tarefa.prioridade }}
         </p>
         <p class="status-tarefa">
+          <!-- [@checkedState]="tarefa.statusFinalizado == true ? 'checked' : 'default'" -->
           <button
+            [@checkedState]="tarefa.id === idStyle ? 'checked' : 'unChecked'"
             [ngClass]="
               tarefa.statusFinalizado == true
                 ? 'icone-checked'
