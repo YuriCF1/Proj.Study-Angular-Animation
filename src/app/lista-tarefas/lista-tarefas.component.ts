@@ -22,6 +22,9 @@ export class ListaTarefasComponent implements OnInit {
   indexTarefa: number = -1 //Nao quero que nenhum card comece destacado
   idStyle: number = 0
 
+  campoBusca: string = ''
+  tarefasFiltradas: Tarefa[] = []
+
   formulario: FormGroup = this.fomBuilder.group({
     id: [0],
     descricao: ['', Validators.required],
@@ -39,8 +42,19 @@ export class ListaTarefasComponent implements OnInit {
   ngOnInit(): Tarefa[] {
     this.service.listar(this.categoria).subscribe((listaTarefas) => {
       this.listaTarefas = listaTarefas;
+      this.tarefasFiltradas = listaTarefas;
     });
-    return this.listaTarefas;
+    return this.tarefasFiltradas;
+  }
+
+  filtrarTarefasPorDescricao(descricao: string) {
+    this.campoBusca = descricao.trim().toLowerCase()
+    if (descricao) {
+      this.tarefasFiltradas = this.listaTarefas.filter(tasks => tasks.descricao.
+        toLowerCase().includes(this.campoBusca))
+    } else {
+      this.tarefasFiltradas = this.listaTarefas
+    }
   }
 
   mostrarOuEsconderFormulario() {
@@ -124,6 +138,7 @@ export class ListaTarefasComponent implements OnInit {
   listarAposCheck() {
     this.service.listar(this.categoria).subscribe((listaTarefas) => {
       this.listaTarefas = listaTarefas;
+      this.tarefasFiltradas = listaTarefas
     });
   }
 
