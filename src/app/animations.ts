@@ -83,3 +83,20 @@ animate() - especifica as informações de tempo para uma transição. Valores o
 
 transition() - define a sequência de animação entre dois estados nomeados. Usa sintaxe de matriz.
 */
+
+export const filterTrigger = trigger('filterAnimation', [
+  transition(':enter', [
+    style({
+      opacity: 0,
+      width: 0
+    }), animate('400ms ease-out', style({
+      opacity: 1, width: '*'
+    }))
+  ]),
+  transition(':leave', [
+    animate('400ms ease-out', style({
+      opacity: 0,
+      width: 0
+    }))
+  ])
+])

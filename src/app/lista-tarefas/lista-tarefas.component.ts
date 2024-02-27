@@ -5,13 +5,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { checkedStateTrigger, highlitedStateTrigger, showStateTrigger } from '../animations';
+import { checkedStateTrigger, filterTrigger, highlitedStateTrigger, showStateTrigger } from '../animations';
 
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
   styleUrls: ['./lista-tarefas.component.css'],
-  animations: [highlitedStateTrigger, showStateTrigger, checkedStateTrigger]
+  animations: [highlitedStateTrigger, showStateTrigger, checkedStateTrigger, filterTrigger]
 })
 
 export class ListaTarefasComponent implements OnInit {

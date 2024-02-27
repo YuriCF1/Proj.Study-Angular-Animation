@@ -86,6 +86,7 @@
       *ngFor="let tarefa of tarefasFiltradas; let i = index"
       (mouseover)="indexTarefa = i"
       [@highlitedState]="indexTarefa === i ? 'highlighted' : 'default'"
+      [@filterAnimation]
     >
       <div class="info-card">
         <p class="categoria-tarefa categoria-{{ tarefa.categoria }}">
