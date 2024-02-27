@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 export const highlitedStateTrigger = trigger('highlitedState', [ //Rece 2 parametros. 1 - Nome do trigger, que remete a animação. 2 - Array de metadados. Contendo states e styles
   state('default', style({
@@ -89,9 +89,11 @@ export const filterTrigger = trigger('filterAnimation', [
     style({
       opacity: 0,
       width: 0
-    }), animate('400ms ease-out', style({
-      opacity: 1, width: '*'
-    }))
+    }), animate('2000ms ease-out', keyframes([
+      style({ offset: 0,opacity: 0, width: 0 }),
+      style({ offset: 0.5, opacity: 0.5, width: '*', backgroundColor: 'lightgreen' }),
+      style({ offset: 1, opacity: 1, width: '*', backgroundColor: 'lightblue' })
+    ]))
   ]),
   transition(':leave', [
     animate('400ms ease-out', style({
