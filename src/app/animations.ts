@@ -167,3 +167,14 @@ export const flyInOutTrigger =
       ])
     ])
   ])
+
+
+export const shakeTrigger = trigger('shakeAnimation', [
+  transition('* => *', [
+    query('input.ng-invalid:focus, select.ng-invalid:focus', [ //NÃO PRECISAVA O FOCUS, ACHO QUE O ANGULAR ATUALIZOU
+      animate('0.5s', style({
+        border: '5px solid red'
+      }))
+    ])
+  ])
+])
