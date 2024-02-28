@@ -1,4 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, group, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 export const highlitedStateTrigger = trigger('highlitedState', [ //Rece 2 parametros. 1 - Nome do trigger, que remete a animação. 2 - Array de metadados. Contendo states e styles
   state('default', style({
@@ -104,15 +104,30 @@ export const filterTrigger = trigger('filterAnimation', [
 ])
 
 export const formButtonTrigger = trigger('formButton', [
-  transition('invalid => valid', [
-    animate(100, style({
-      backgroundColor: '#63B77C'
-    })),
-    animate(100, style({
-      transform: 'scale(1.05)'
-    })),
-    animate(200, style({
-      transform: 'scale(1.1)'
-    }))
+  transition('invalid => valid', [ //Fazendo as animações ao mesmo tempo
+    group([
+      animate(600, style({
+        backgroundColor: '#63B77C'
+      })),
+      animate(100, style({
+        transform: 'scale(1.05)'
+      })),
+      animate(200, style({
+        transform: 'scale(1.1)'
+      }))
+    ])
+  ]),
+  transition('valid => invalid', [ //Fazendo as animações ao mesmo tempo
+    group([
+      animate(600, style({
+        backgroundColor: '#6C757D'
+      })),
+      animate(100, style({
+        transform: 'scale(1.05)'
+      })),
+      animate(200, style({
+        transform: 'scale(1.1)'
+      }))
+    ])
   ])
 ])
