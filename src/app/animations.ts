@@ -70,20 +70,6 @@ export const checkedStateTrigger = trigger('checkedState', [
   ])
 ])
 
-
-/*
-trigger() - inicia a animação e serve como um contêiner para todas as outras chamadas de função de animação.
-O template é vinculado ao nome do trigger, que é declarado como primeiro argumento da função. Usa sintaxe de matriz.
-
-style() - define um ou mais estilos CSS para usar em animações. Controla a aparência visual dos elementos HTML durante as animações. Usa sintaxe de objeto.
-
-state() - cria um conjunto nomeado de estilos CSS que devem ser aplicados na transição bem-sucedida para um determinado estado. O estado pode então ser referenciado pelo nome dentro de outras funções de animação.
-
-animate() - especifica as informações de tempo para uma transição. Valores opcionais para delay e easing function. Pode conter métodos style().
-
-transition() - define a sequência de animação entre dois estados nomeados. Usa sintaxe de matriz.
-*/
-
 export const filterTrigger = trigger('filterAnimation', [
   transition(':enter', [
     style({
@@ -171,10 +157,48 @@ export const flyInOutTrigger =
 
 export const shakeTrigger = trigger('shakeAnimation', [
   transition('* => *', [
+    // query(':self, input.ng-invalid:focus, select.ng-invalid:focus', [ //:self treme a propria tag onde foi posta a animação, no caso, form
     query('input.ng-invalid:focus, select.ng-invalid:focus', [ //NÃO PRECISAVA O FOCUS, ACHO QUE O ANGULAR ATUALIZOU
-      animate('0.5s', style({
-        border: '5px solid red'
-      }))
+      animate('0.5s', keyframes([
+        style({ border: '2px solid red' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateY(-10px)' }),
+        style({ transform: 'translateY(10px)' }),
+        style({ transform: 'translateX(-10px)' }),
+        style({ transform: 'translateX(10px)' }),
+        style({ transform: 'translateY(-10px)' }),
+        style({ transform: 'translateY(0px)' }),
+        style({ transform: 'translateX(0px)' }),
+      ]))
     ])
   ])
 ])
+
+/*
+
+trigger() - inicia a animação e serve como um contêiner para todas as outras chamadas de função de animação.
+O template é vinculado ao nome do trigger, que é declarado como primeiro argumento da função. Usa sintaxe de matriz.
+
+style() - define um ou mais estilos CSS para usar em animações. Controla a aparência visual dos elementos HTML durante as animações. Usa sintaxe de objeto.
+
+state() - cria um conjunto nomeado de estilos CSS que devem ser aplicados na transição bem-sucedida para um determinado estado. O estado pode então ser referenciado pelo nome dentro de outras funções de animação.
+
+animate() - especifica as informações de tempo para uma transição. Valores opcionais para delay e easing function. Pode conter métodos style().
+
+transition() - define a sequência de animação entre dois estados nomeados. Usa sintaxe de matriz.
+
+
+EXAMPLO DE INVALIDAÇÃO DO CAMPO REQUIRED
+
+export const highlightEmptyFields = trigger('highlightEmptyFields', [
+  transition(':enter', [
+    query('input[required]:empty', [
+      style({ backgroundColor: 'red' }),
+      animate('0.5s ease-out', style({ backgroundColor: 'transparent' }))
+    ])
+  ])
+]);
+*/
