@@ -173,7 +173,7 @@ export const shakeTrigger = trigger('shakeAnimation', [
         style({ transform: 'translateY(0px)' }),
         style({ transform: 'translateX(0px)' }),
       ]))
-    ])
+    ], { optional: true }) //Já que o formulário inicia fechado. Digo ao angular que caso n encontre com o query, ignore
   ])
 ])
 

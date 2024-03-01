@@ -17,7 +17,7 @@ import { checkedStateTrigger, filterTrigger, flyInOutTrigger, formButtonTrigger,
 
 export class ListaTarefasComponent implements OnInit {
   listaTarefas: Tarefa[] = [];
-  formAberto: boolean = true;
+  formAberto: boolean = false;
   categoria: string = '';
   validado: boolean = false;
   indexTarefa: number = -1 //Nao quero que nenhum card comece destacado
