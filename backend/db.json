@@ -4,7 +4,7 @@
       "id": 1,
       "descricao": "Ir ao supermercado",
       "categoria": "Casa",
-      "statusFinalizado": true,
+      "statusFinalizado": false,
       "prioridade": "Baixa"
     },
     {
@@ -32,7 +32,7 @@
       "id": 6,
       "descricao": "Ler",
       "statusFinalizado": false,
-      "categoria": "Estudos",
+      "categoria": "Casa",
       "prioridade": "Alta"
     }
   ]
