@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { TarefaService } from 'src/app/service/tarefa.service';
 import { Tarefa } from '../interface/tarefa';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { checkedStateTrigger, filterTrigger, flyInOutTrigger, formButtonTrigger, highlitedStateTrigger, shakeTrigger, showStateTrigger } from '../animations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lista-tarefas',
@@ -26,6 +27,8 @@ export class ListaTarefasComponent implements OnInit {
   campoBusca: string = ''
   tarefasFiltradas: Tarefa[] = []
 
+  tarefasSubscription: Subscription = new Subscription;
+
   formulario: FormGroup = this.fomBuilder.group({
     id: [0],
     descricao: ['', Validators.required],
@@ -36,17 +39,18 @@ export class ListaTarefasComponent implements OnInit {
 
   constructor(
     private service: TarefaService,
-    private router: Router,
+    // private router: Router,
     private fomBuilder: FormBuilder
   ) { }
 
-  ngOnInit(): Tarefa[] {
-    this.service.listar(this.categoria).subscribe((listaTarefas) => {
-      this.listaTarefas = listaTarefas;
-      this.tarefasFiltradas = listaTarefas;
-    });
-    return this.tarefasFiltradas;
-  }
+  ngOnInit(): void {
+    this.service.listar()
+    this.tarefasSubscription = this.service.tarefasAtualizadas$.subscribe(tasks => {
+      this.listaTarefas = tasks;
+      this.tarefasFiltradas = tasks;
+    })
+  };
+  // return this.tarefasFiltradas;
 
   filtrarTarefasPorDescricao(descricao: string) {
     this.campoBusca = descricao.trim().toLowerCase()
@@ -77,22 +81,33 @@ export class ListaTarefasComponent implements OnInit {
   }
 
   editarTarefa() {
-    this.service.editar(this.formulario.value).subscribe({
-      complete: () => this.atualizarComponente(),
-    });
+    if (this.formulario.valid) {
+      const tarefaEditada = this.formulario.value
+      this.service.editar(tarefaEditada, true)
+      this.resetarFormulario()
+    }
+    // this.service.editar(this.formulario.value).subscribe({
+    //   complete: () => this.atualizarComponente(),
+    // });
   }
 
   criarTarefa() {
-    this.service.criar(this.formulario.value).subscribe({
-      complete: () => this.atualizarComponente(),
-    });
+    if (this.formulario.valid) {
+      const novaTarefa = this.formulario.value
+      this.service.criar(novaTarefa)
+      this.resetarFormulario()
+    }
+    // this.service.criar(this.formulario.value).subscribe({
+    //   complete: () => this.atualizarComponente(),
+    // });
   }
 
-  excluirTarefa(id: number) {
-    if (id) {
-      this.service.excluir(id).subscribe({
-        complete: () => this.recarregarComponente(),
-      });
+  excluirTarefa(tarefa: Tarefa) {
+    if (tarefa.id) {
+      this.service.excluir(tarefa.id)
+      // this.service.excluir(id).subscribe({
+      //   complete: () => this.recarregarComponente(),
+      // });
     }
   }
 
@@ -105,14 +120,21 @@ export class ListaTarefasComponent implements OnInit {
     });
   }
 
-  recarregarComponente() {
-    this.router.navigate(['/listaTarefas']);
-  }
+  //MÉTODOS INÚTEIS APÓS A UTILIZAÇÃO DO BehaviorSubject. Já que as rotas não estão mais sendo
+  // recarregarComponente() {
+  //   this.router.navigate(['/listaTarefas']);
+  // }
 
-  atualizarComponente() {
-    this.recarregarComponente();
-    this.resetarFormulario();
-  }
+  // atualizarComponente() {
+  //   this.recarregarComponente();
+  //   this.resetarFormulario();
+  // }
+  // listarAposCheck() {
+  //   this.service.listar(this.categoria).subscribe((listaTarefas) => {
+  //     this.listaTarefas = listaTarefas;
+  //     this.tarefasFiltradas = listaTarefas
+  //   });
+  // }
 
   carregarParaEditar(id: number) {
     this.service.buscarPorId(id!).subscribe((tarefa) => {
@@ -127,20 +149,18 @@ export class ListaTarefasComponent implements OnInit {
     this.formAberto = true;
   }
 
-  finalizarTarefa(id: number) {
-    this.idStyle = id
-    this.service.buscarPorId(id!).subscribe((tarefa) => {
-      this.service.atualizarStatusTarefa(tarefa).subscribe(() => {
-        this.listarAposCheck();
-      });
-    });
-  }
-
-  listarAposCheck() {
-    this.service.listar(this.categoria).subscribe((listaTarefas) => {
-      this.listaTarefas = listaTarefas;
-      this.tarefasFiltradas = listaTarefas
-    });
+  finalizarTarefa(tarefa: Tarefa) {
+    // finalizarTarefa(id: number) {
+    this.service.atualizarStatusTarefa(tarefa)
+    // if (tarefa.statusFinalizado) {
+    // } else {
+    //   this.idStyle = NaN;
+    // }
+    // this.idStyle = id
+    // this.service.buscarPorId(id!).subscribe((tarefa) => {
+    //     this.listarAposCheck();
+    //   });
+    // });
   }
 
   habilitarBotao(): string {
