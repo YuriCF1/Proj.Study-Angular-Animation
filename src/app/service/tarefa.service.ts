@@ -44,14 +44,16 @@ export class TarefaService {
     });
   }
 
-  editar(tarefaRecbida: Tarefa): void {
+  editar(tarefaRecbida: Tarefa, atualizarSubject: boolean): void {
     const url = `${this.API}/${tarefaRecbida.id}`;
     this.http.put<Tarefa>(url, tarefaRecbida).subscribe(tarefaEditada => {
-      const tarefasTotais = this.tarefasSubject.getValue()
-      const index = tarefasTotais.findIndex(task => task.id === tarefaEditada.id)
-      if (index != -1) { //Caso não econtre, a função acima recebe -1
-        tarefasTotais[index] = tarefaEditada
-        this.tarefasSubject.next(tarefasTotais)
+      if (atualizarSubject) {
+        const tarefasTotais = this.tarefasSubject.getValue()
+        const index = tarefasTotais.findIndex(task => task.id === tarefaEditada.id)
+        if (index != -1) { //Caso não econtre, a função acima recebe -1
+          tarefasTotais[index] = tarefaEditada
+          this.tarefasSubject.next(tarefasTotais)
+        }
       }
     });
   }
@@ -70,7 +72,7 @@ export class TarefaService {
 
   atualizarStatusTarefa(tarefa: Tarefa): void {
     tarefa.statusFinalizado = !tarefa.statusFinalizado;
-    this.editar(tarefa);
+    this.editar(tarefa, false);
   }
 
   buscarPorId(id: number): Observable<Tarefa> {
