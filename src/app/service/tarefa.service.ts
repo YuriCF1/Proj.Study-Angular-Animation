@@ -14,6 +14,10 @@ export class TarefaService {
   // e também como um Observer - Captando
   private tarefasSubject = new BehaviorSubject<Tarefa[]>([]) //Iniciando como um array vazio
   tarefasAtualizadas$ = this.tarefasSubject.asObservable() //Criando novo Observable, cujo a fonte de dados será o subject acima
+  /*
+  O BehaviorSubject emite o valor atual e mantém uma lista de seus “observadores”, o que permite que o estado seja facilmente compartilhado entre vários componentes.
+  */
+
 
   constructor(private http: HttpClient) { }
 
@@ -66,7 +70,7 @@ export class TarefaService {
 
   atualizarStatusTarefa(tarefa: Tarefa): void {
     tarefa.statusFinalizado = !tarefa.statusFinalizado;
-     this.editar(tarefa);
+    this.editar(tarefa);
   }
 
   buscarPorId(id: number): Observable<Tarefa> {
