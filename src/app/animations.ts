@@ -63,7 +63,12 @@ export const checkedStateTrigger = trigger('checkedState', [
   // })), transition('default => checked', [
   //   animate('1000ms ease-out')
   // ])
-  transition('* => checked', [
+  transition('unChecked => checked', [
+    animate('400ms ease-in', style({
+      transform: 'scale(0.4)'
+    }))
+  ]),
+  transition('checked => unChecked', [
     animate('400ms ease-in', style({
       transform: 'scale(0.4)'
     }))
