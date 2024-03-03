@@ -50,7 +50,7 @@
     <div class="botoes-form">
       <!-- [@formButton]="formulario.valid ? 'valid' : 'invalid'" -->
       <button
-      id="botao-salvar"
+        id="botao-salvar"
         (click)="salvarTarefa()"
         class="botao-form"
         [ngClass]="habilitarBotao()"
@@ -106,13 +106,13 @@
         <p class="status-tarefa">
           <!-- [@checkedState]="tarefa.statusFinalizado == true ? 'checked' : 'default'" -->
           <button
-            [@checkedState]="tarefa.id === idStyle ? 'checked' : 'unChecked'"
+            (click)="finalizarTarefa(tarefa)"
+            [@checkedState]="tarefa.statusFinalizado ? 'checked' : 'unChecked'"
             [ngClass]="
               tarefa.statusFinalizado == true
                 ? 'icone-checked'
                 : 'icone-unchecked'
             "
-            (click)="finalizarTarefa(tarefa.id)"
           ></button>
         </p>
       </div>
@@ -127,7 +127,7 @@
           <button class="botao-editar" (click)="carregarParaEditar(tarefa.id)">
             <img src="assets/icones/icone-editar.png" alt="Ícone de editar" />
           </button>
-          <button (click)="excluirTarefa(tarefa.id)" class="botao-deletar">
+          <button (click)="excluirTarefa(tarefa)" class="botao-deletar">
             <img src="assets/icones/icone-excluir.png" alt="Ícone de excluir" />
           </button>
         </div>
