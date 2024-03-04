@@ -1,4 +1,4 @@
-import { animate, group, keyframes, query, state, style, transition, trigger } from '@angular/animations';
+import { animate, group, keyframes, query, stagger, state, style, transition, trigger } from '@angular/animations';
 
 export const highlitedStateTrigger = trigger('highlitedState', [ //Rece 2 parametros. 1 - Nome do trigger, que remete a animação. 2 - Array de metadados. Contendo states e styles
   state('default', style({
@@ -189,18 +189,20 @@ export const listSatateTrigger = trigger('listState', [
         opacity: 0,
         transform: 'translateX(-100%)'
       }),
-      animate('500ms ease-out', keyframes([
-        style({
-          opacity: 1,
-          transform: 'translateX(-15%)',
-          offset: 0.4
-        }),
-        style({
-          opacity: 1,
-          transform: 'translateX(0%)',
-          offset: 1
-        }),
-      ]))
+      stagger(200, [ //Adciona um delay para a animação de cada item
+        animate('500ms ease-out', keyframes([
+          style({
+            opacity: 1,
+            transform: 'translateX(-15%)',
+            offset: 0.4
+          }),
+          style({
+            opacity: 1,
+            transform: 'translateX(0%)',
+            offset: 1
+          }),
+        ]))
+      ])
     ], { optional: true }) //Posso usar o query para detectar a saída e entrada de elementos também
   ])
 ])
