@@ -9,7 +9,7 @@ import { Tarefa } from '../interface/tarefa';
 })
 export class TarefaService {
   // private readonly API = 'http://localhost:3000/tarefas'; //Teste
-  private readonly API = 'https://proj-study-angular-animation.onrender.com/tarefas/tarefas'; //Produção
+  private readonly API = 'https://proj-study-angular-animation.onrender.com/tarefas'; //Produção
 
   //o Subject, é um tipo especial, uma variante do subject, que pode atuar como Observeble - Emitindo,
   // e também como um Observer - Captando
