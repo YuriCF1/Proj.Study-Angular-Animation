@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-lista-tarefas',
   templateUrl: './lista-tarefas.component.html',
-  styleUrls: ['./lista-tarefas.component.css'],
+  styleUrls: ['./lista-tarefas.component.css', './lista-tarefas.component2.css'],
   animations: [highlitedStateTrigger, showStateTrigger, checkedStateTrigger,
     filterTrigger, formButtonTrigger, flyInOutTrigger, shakeTrigger, listSatateTrigger]
 })
