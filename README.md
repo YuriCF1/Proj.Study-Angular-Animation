@@ -28,6 +28,7 @@ It was used the AnimationModule and functions such as query, staggers and others
 - [ X ] Animation of form
 - [ X ] Animation of focus on task
 - [ X ] Animation of task done
+- [ X ] Animation of searching tasks
 - [ X ] Animation of tasks apearing
 
 <img src="https://raw.githubusercontent.com/YuriCF1/Proj.Study-Angular-Animation/fc07ce6594ebfc0fc8070ce9cbe2805ba88603ea/src/assets/imagens/example.png" alt="imagem do site">
