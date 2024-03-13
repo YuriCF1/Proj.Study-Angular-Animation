@@ -1,27 +1,51 @@
-# 2806Memorando
+# To Do Animations
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+<!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
+### Deploy of the project: Done
+https://proj-study-angular-animation-nu.vercel.app/listaTarefas
 
-## Development server
+## About it
+A site of a ToDo List using animations of angular
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Description
+It was used the AnimationModule and functions such as query, staggers and others.
 
-## Code scaffolding
+<div id='comeco'>
+ </div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Languages and Frameworks
+- HTML
+- CSS
+- Typescript
+- Angular
+- Vercel
 
-## Build
+### Steps
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [ X ] HTML structure
+- [ X ] CSS Style
+- [ X ] Json server file
+- [ X ] Animation of form
+- [ X ] Animation of focus on task
+- [ X ] Animation of task done
+- [ X ] Animation of tasks apearing
 
-## Running unit tests
+<img src="https://raw.githubusercontent.com/YuriCF1/Proj.Study-Angular-Animation/fc07ce6594ebfc0fc8070ce9cbe2805ba88603ea/src/assets/imagens/example.png" alt="imagem do site">
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🤝 Colaborators
 
-## Running end-to-end tests
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/yf19/">
+        <img src="https://github.com/YuriCF1/YuriCF1/blob/main/99689063.jpg" width="100px;" alt="Foto do Yuri Cruz no GitHub"/><br>
+        <sub>
+          <b>Yuri Cruz</b>
+        </sub>
+      </a>
+    </td>
+ 
+</table>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[⬆ Go back to top](#comeco)<br>
